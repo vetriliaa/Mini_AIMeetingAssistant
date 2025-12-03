@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  db: 
+    # Specify which Docker image to use 
+    image: postgres:15
+    # Set env. variables that will be set inside Docker container
+    environment:
+      # Initial database name
+      POSTGRES_DB: meetings_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://admin:password@db:5432/meetings_db
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
