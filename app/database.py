@@ -1,10 +1,9 @@
-# app/database.py
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
 
-# Get database URL from environment variable
+# Get database URL 
 SQLALCHEMY_DATABASE_URL = os.getenv(
     "DATABASE_URL",
     "postgresql://admin:password@db:5432/meetings_db"

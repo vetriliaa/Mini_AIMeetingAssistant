@@ -12,28 +12,22 @@ SECRET_KEY = "your-secret-key-change-in-production-09af8s7df98a7sdf987a6sdf8a7sd
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
-# Password hashing context
+# Password hashing 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# OAuth2 scheme for token authentication
+# Token authentication
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    """
-    Verify a plain password against a hashed password
-    """
+    # Verify plain vs hashed password
     return pwd_context.verify(plain_password, hashed_password)
 
 def get_password_hash(password: str) -> str:
-    """
-    Hash a password for storing
-    """
+    
     return pwd_context.hash(password)
 
 def create_access_token(data: dict) -> str:
-    """
-    Create a JWT access token
-    """
+    # Create JWT token
     to_encode = data.copy()
     expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     to_encode.update({"exp": expire})
@@ -44,10 +38,7 @@ def get_current_user(
     token: str = Depends(oauth2_scheme),
     db: Session = Depends(get_db)
 ) -> models.User:
-    """
-    Validates JWT token and returns the current authenticated user
-    This is used as a dependency in protected routes
-    """
+    # Validates JWT token, return authenticated user
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",

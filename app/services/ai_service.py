@@ -1,4 +1,3 @@
-# app/services/ai_service.py
 import anthropic
 import json
 import re
@@ -9,9 +8,7 @@ class MeetingAnalyzer:
         self.client = anthropic.Anthropic(api_key=api_key)
     
     def analyze_transcript(self, transcript: str) -> Dict[str, Any]:
-        """
-        Sends transcript to Claude and gets structured insights back
-        """
+        # Send transcript to Claude
         
         prompt = f"""Analyze this meeting transcript and extract:
 1. Action items (who needs to do what)
@@ -42,20 +39,18 @@ Transcript:
             ]
         )
         
-        # Get the response text
         response_text = response.content[0].text
         
-        # Try to extract JSON from the response (in case Claude adds extra text)
         try:
-            # First try direct parsing
+            # Direct parsing
             result = json.loads(response_text)
         except json.JSONDecodeError:
-            # If that fails, try to find JSON within the text
+            # Extract JSON from response
             json_match = re.search(r'\{.*\}', response_text, re.DOTALL)
             if json_match:
                 result = json.loads(json_match.group())
             else:
-                # If all else fails, return empty structure
+                # Returns empty by default
                 result = {
                     "action_items": [],
                     "key_decisions": [],
