@@ -31,13 +31,14 @@ processes meeting transcripts (via Claude AI) to extract key insights (action it
 6. Click "Execute" to generate meeting insights
 <img width="763" height="446" alt="Screenshot 2025-12-03 at 4 02 42 PM" src="https://github.com/user-attachments/assets/097b3f53-67c8-4afa-80fd-efbe69270b98" />
    
-**Tech Stack**
-Language: Python
-Framework: FastAPI
-Database: PostgreSQL + SQLAlchemy
-Validation: Pydantic
-Auth: JWT
-AI: Claude API (Anthropic)
-Container: Docker
+**Tech Stack**\
+Language: Python\
+Framework: FastAPI\
+Database: PostgreSQL + SQLAlchemy\
+Validation: Pydantic\
+Auth: JWT\
+AI: Claude API (Anthropic)\
+Container: Docker\
 Interactive API Documentation: Swagger UI
+
 
