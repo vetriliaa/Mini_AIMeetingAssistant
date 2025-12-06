@@ -1,6 +1,9 @@
 This project is an AI-powered meeting assistant built with ReadAI's tech stack. It's primarily a backend service that 
-processes meeting transcripts (via Claude AI) to extract key insights (action items, dicussion topics, and basic sentiment analysis).
+processes meeting transcripts (via Claude AI) to extract key insights (action items, dicussion topics, and basic sentiment analysis). 
 
+Click here to open the project in your browser: https://mini-aimeetingassistant.onrender.com/docs 
+
+_Installing the project locally_
 **Prerequisites**
 1. Docker Desktop
 2. Anthropic API Key
@@ -40,5 +43,6 @@ Auth: JWT\
 AI: Claude API (Anthropic)\
 Container: Docker\
 Interactive API Documentation: Swagger UI
+
 
 
